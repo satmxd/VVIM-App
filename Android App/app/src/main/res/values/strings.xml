@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tree Scanner</string>
+    <string name="toggle_flash">Toggle Flash</string>
+    <string name="action_settings">Settings</string>
+    <string name="scanned_data">Scanned Data</string>
+    <integer name="paddinghomebutton">50</integer>
+</resources>

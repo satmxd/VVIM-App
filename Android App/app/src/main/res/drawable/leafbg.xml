@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item>
+            <shape>
+                <gradient
+                    android:startColor="#151515"
+                    android:centerColor="#121212"
+                    android:endColor="#191919"
+                    android:type="linear"
+                    android:angle="45">
+                </gradient>
+            </shape>
+        </item>
+
+        <item android:gravity="right|top" >
+
+            <bitmap android:gravity="center" android:src="@drawable/monsteraleaf" />
+
+        </item>
+
+</layer-list>
