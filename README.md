@@ -1,2 +1,2 @@
 # VVIM-App
-QR based Android app for VVIM
+QR-scan based Android app for trees along with interactive quiz & facts for VVIM
