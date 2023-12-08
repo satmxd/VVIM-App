@@ -46,7 +46,7 @@ for i in lines:
             ln.append(i[1])
     except:
         pass
-
+print(ln.index('SAGOPLM082'))
 from spire.pdf.common import *
 from spire.pdf import *
 
@@ -56,32 +56,46 @@ doc = PdfDocument()
 # Load a PDF document
 doc.LoadFromFile('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs-compressed.pdf')
 
-# Get a specific page
-
-# Extract images from the page
 images = []
 step = 3
-for val in range(5):
-    for i in range(step*val*2, step*(val+1)*2):
-        page = doc.Pages[i]
-        for image in page.ExtractImages():
-            images.append(image)
+# for val in range(100):
+#     for i in range(step*val, int(step*val)+step):
+#         page = doc.Pages[i]
+#         for image in page.ExtractImages():
+#             images.append(image)
 
-    # Save images to specified location with specified format extension
-    index = step*val*2
-    print(len(images))
-    j = 1
-    for image in images:
-        imageFileName = f'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs\\{ln[index]}-{j}.png'
-        index += 1
-        j += 1
-        if j > 3:
-            j = 1
-        image.Save(imageFileName, ImageFormat.get_Png())
-    
-    if input('continue? ') == 'y':
-        continue
-    else:
-        break
+#     index = step*val
+#     j = 1
+#     for image in images[step*val:int(step*val)+step]:
+#         print(image)
+#         imageFileName = f'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs\\{ln[index]}-{j}.png'
+#         index += 1
+#         j += 1
+#         if j > 3:
+#             j = 1
+#         image.Save(imageFileName, ImageFormat.get_Png())
+
+#     if input() != 'n':
+#         continue
+#     else:
+#         break
+
+
+for i in range(123,125):
+    page = doc.Pages[i]
+    for image in page.ExtractImages():
+        images.append(image)
+
+index = 246
+j = 1
+for image in images:
+    print(image)
+    imageFileName = f'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs\\{ln[index]}-{j}.png'
+    index += 1
+    j += 1
+    if j > 3:
+        j = 1
+    image.Save(imageFileName, ImageFormat.get_Png())
+
     
 doc.Close()
