@@ -18,14 +18,15 @@ public class QuizActivityMain extends AppCompatActivity {
         ImageView backbtn = findViewById(R.id.backbutton);
         CardView commonbtn = findViewById(R.id.QuizCommonNames);
         CardView sciencebtn = findViewById(R.id.QuizScientific);
-        CardView drugbtn = findViewById(R.id.QuizScientific);
+        CardView drugbtn = findViewById(R.id.QuizMedicine);
         CardView imagebtn = findViewById(R.id.QuizPicture);
+
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(QuizActivityMain.this, MainActivity.class));
-                finish();
+                Intent intent = new Intent(QuizActivityMain.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -44,6 +44,7 @@ public class QRInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrinfo);
+        //TODO: backbutton for both origins teleporting to same activity, change.
 
         String qrd = getIntent().getStringExtra("qrdata");
         String qrd_sliced = qrd.substring(qrd.length()-2, qrd.length());

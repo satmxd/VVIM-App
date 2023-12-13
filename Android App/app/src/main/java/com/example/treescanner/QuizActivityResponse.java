@@ -1,12 +1,17 @@
 package com.example.treescanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,9 +30,12 @@ public class QuizActivityResponse extends AppCompatActivity {
     Cursor res;
     Integer count = 0;
     TextView questionBox;
-    TextView optBox[];
+    List<TextView> optBox;
+
+    TextView answer;
     String qintent;
     List<Integer> commonNameList;
+    static List<TextView> optBox_Numbered;
 
 
     @Override
@@ -37,13 +45,80 @@ public class QuizActivityResponse extends AppCompatActivity {
         db = new DBHelper(this);
         questionBox = findViewById(R.id.question);
         Button nextq = findViewById(R.id.quiznext);
-        optBox = new TextView[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3), findViewById(R.id.option4)};
+        optBox = new ArrayList<>();
+        optBox.add(0, findViewById(R.id.option1));
+        optBox.add(1, findViewById(R.id.option2));
+        optBox.add(2, findViewById(R.id.option3));
+        optBox.add(3, findViewById(R.id.option4));
+        ImageView backbtn = findViewById(R.id.backbutton);
+        optBox_Numbered = new ArrayList<>(optBox);
         res = db.get_data();
         qintent = getIntent().getStringExtra("qintent");
-        commonNameList = CommonNames();
-        Collections.shuffle(commonNameList);
         this.update(qintent);
+        Toast.makeText(this, qintent, Toast.LENGTH_SHORT).show();
 
+        optBox_Numbered.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (answer == optBox_Numbered.get(0)){
+                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    answer.setBackgroundColor(Color.parseColor("#00FF00"));
+
+                    update(qintent);
+                }else{
+                    optBox_Numbered.get(0).setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+            }
+        });
+        optBox_Numbered.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (answer == optBox_Numbered.get(1)){
+                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    answer.setBackgroundColor(Color.parseColor("#00FF00"));
+
+                    update(qintent);
+
+                }else{
+                    optBox_Numbered.get(1).setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+            }
+        });
+        optBox_Numbered.get(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (answer == optBox_Numbered.get(2)){
+                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    answer.setBackgroundColor(Color.parseColor("#00FF00"));
+
+                    update(qintent);
+
+                }else{
+                    optBox_Numbered.get(2).setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+            }
+        });
+        optBox_Numbered.get(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (answer == optBox_Numbered.get(3)){
+                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    answer.setBackgroundColor(Color.parseColor("#00FF00"));
+
+                    update(qintent);
+                }else{
+                    optBox_Numbered.get(3).setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+            }
+        });
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuizActivityResponse.this, QuizActivityMain.class);
+                startActivity(intent);
+            }
+        });
     }
     public void onclick(View view){
         count += 1;
@@ -51,26 +126,40 @@ public class QuizActivityResponse extends AppCompatActivity {
     }
 
 
-    private List<Integer> CommonNames(){
+    private Pair<String[], String[]> CommonNames(){
         res.moveToFirst();
         String common;
-        List<Integer> names = new ArrayList<>();
+        List<String[]> NameMap = new ArrayList<>();
         while(res.moveToNext()){
-            common = res.getString(3);
+            common = res.getString(2);
             if (!common.equals("")){
-                names.add(res.getPosition());
+                NameMap.add(new String[]{common, res.getString(1)});
             }
         }
-        Collections.shuffle(names);
-        return names;
+        Collections.shuffle(NameMap);
+        String[] correct = NameMap.get(0);
+        String[] options = new String[]{NameMap.get(1)[0], NameMap.get(2)[0], NameMap.get(3)[0]};
+
+        return new Pair<>(correct, options);
     }
 
-    private List<Integer> ScientificAndImage(){
+    private Pair<String[], String[]> ScientificNames(){
         res.moveToFirst();
-        List<Integer> toreturn =IntStream.range(0, res.getCount()).boxed().collect(Collectors.toList());
-        Collections.shuffle(toreturn);
-        return toreturn;
+        String science;
+        List<String[]> NameMap = new ArrayList<>();
+        while(res.moveToNext()){
+            science = res.getString(9);
+            if (!science.equals("")){
+                NameMap.add(new String[]{science, res.getString(1)});
+            }
+        }
+        Collections.shuffle(NameMap);
+        String[] correct = NameMap.get(0);
+        String[] options = new String[]{NameMap.get(1)[0], NameMap.get(2)[0], NameMap.get(3)[0]};
+
+        return new Pair<>(correct, options);
     }
+
 
     private Map<Integer, String> MedicalQuestions(){
         res.moveToFirst();
@@ -109,33 +198,38 @@ public class QuizActivityResponse extends AppCompatActivity {
 
 
     private void update(String type){
-        String answer;
-        List<String> options = new ArrayList<>();
-        if(type.equals("common")){
-            Integer questionCounter = commonNameList.get(count);
-            res.moveToPosition(questionCounter);
-            String question = res.getString(1);
-            questionBox.setText(question);
-            answer = res.getString(2);
-            List<Integer> cache = commonNameList;
-            Collections.shuffle(cache);
-            String commonNameCache;
-            for(int counter = 0; counter<3; counter++){
-                res.moveToPosition(cache.get(counter));
-                commonNameCache = res.getString(2);
-                if (!commonNameCache.equals(answer)){
-                    options.add(commonNameCache);
-                }else{
-                    counter--;
-                }
-            }
-            options.add(answer);
-            Collections.shuffle(options);
-            for(int i = 0; i<4; i++){
-                optBox[i].setText(options.get(i));
-            }
+        optBox.get(0).setBackgroundColor(Color.parseColor("#252525"));
+        optBox.get(1).setBackgroundColor(Color.parseColor("#252525"));
+        optBox.get(2).setBackgroundColor(Color.parseColor("#252525"));
+        optBox.get(3).setBackgroundColor(Color.parseColor("#252525"));
 
+        if(type.equals("common")){
+            Pair<String [], String[]> getVal = CommonNames();
+            String[] ans_list = getVal.first;
+            String[] options_list = getVal.second;
+            questionBox.setText("What is the common name of " + ans_list[1]+ " ?");
+            Collections.shuffle(optBox);
+            optBox.get(0).setText(options_list[0]);
+            optBox.get(1).setText(options_list[1]);
+            optBox.get(2).setText(options_list[2]);
+            optBox.get(3).setText(ans_list[0]);
+            answer = optBox.get(3);
+        }
+        if(type.equals("science")){
+                Pair<String [], String[]> getVal = ScientificNames();
+                String[] ans_list = getVal.first;
+                String[] options_list = getVal.second;
+                questionBox.setText("What is the scientific name of " + ans_list[1]+ " ?");
+                Collections.shuffle(optBox);
+                optBox.get(0).setText(options_list[0]);
+                optBox.get(1).setText(options_list[1]);
+                optBox.get(2).setText(options_list[2]);
+                optBox.get(3).setText(ans_list[0]);
+                answer = optBox.get(3);
+            }
         }
 
-    }
+
+
+
 }
