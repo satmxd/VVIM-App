@@ -18,4 +18,6 @@ QR-scan-based Android app for trees along with interactive quiz & facts for VVIM
   - 3D View of the school with location of every tree present for easier access.
 
 ## Screenshots
-| ![First](/.github/assets/first.png?raw=true) | ![Sec](/.github/assets/sec.png?raw=true) |
+| Splash Screen | Home page | Information | Quiz | Quiz Response |
+|:-:|:-:|:-:|:-:|:-:|
+| ![First](/.github/assets/splashscreen.png?raw=true) | ![Sec](/.github/assets/homepage.png?raw=true) | ![thr](/.github/assets/infopage.png?raw=true) | ![fourth](/.github/assets/quizpage.png?raw=true) | ![fifth](/.github/assets/quizresponse.png?raw=true) |
