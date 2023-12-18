@@ -8,24 +8,103 @@
     android:background="@drawable/homepagbackground"
     tools:context=".GalleryActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/backbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/backbutton"
-            android:paddingLeft="15dp"
             android:elevation="10dp"
+            android:paddingLeft="15dp"
             android:paddingTop="15dp"
-            app:tint="@color/white"/>
+            android:src="@drawable/backbutton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
 
         <ImageView
+            android:id="@+id/galleryimg1"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="400dp"
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backbutton" />
+
+        <ImageView
+            android:id="@+id/galleryimg2"
+            android:padding="10dp"
+
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg1" />
+
+        <ImageView
+            android:id="@+id/galleryimg3"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:padding="10dp"
+
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/galleryimg2"
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg1" />
+
+        <ImageView
+            android:id="@+id/galleryimg4"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:src="@drawable/baseline_photo_24" />
-    </LinearLayout>
+
+            android:padding="10dp"
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg2" />
+
+        <ImageView
+            android:id="@+id/galleryimg5"
+            android:layout_width="220dp"
+
+            android:layout_height="220dp"
+            android:layout_marginStart="12dp"
+            android:padding="10dp"
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintEnd_toStartOf="@+id/galleryimg6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg4" />
+
+        <ImageView
+            android:id="@+id/galleryimg6"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+
+            android:padding="10dp"
+            android:src="@drawable/baseline_photo_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/galleryimg2"
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reload page to view more..."
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/galleryimg6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

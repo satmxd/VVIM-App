@@ -3,11 +3,14 @@ package com.example.treescanner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +48,15 @@ public class QRInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrinfo);
-        //TODO: backbutton for both origins teleporting to same activity, change.
+
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected){
+            Toast.makeText(this, "Connect to a Wifi network to view Images", Toast.LENGTH_LONG).show();
+        }
+
         origin = getIntent().getStringExtra("origin");
         String qrd = getIntent().getStringExtra("qrdata");
         String qrd_sliced = qrd.substring(qrd.length()-2, qrd.length());

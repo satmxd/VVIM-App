@@ -2,11 +2,15 @@ package com.example.treescanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -47,6 +51,15 @@ public class FactsActivity extends AppCompatActivity {
         InputStream input_txt = getBaseContext().getResources().openRawResource(R.raw.facts);
         BufferedReader bfr = new BufferedReader(new InputStreamReader(input_txt));
         factlist = new ArrayList<>();
+
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected){
+            Toast.makeText(this, "Connect to a Wifi network to view Images", Toast.LENGTH_LONG).show();
+        }
+
 
         String line;
         try {

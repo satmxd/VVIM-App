@@ -84,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp"
                 android:text="Kingdom: "
+                android:fontFamily="sans-serif-medium"
                 android:textColor="@color/text_col"
                 android:textSize="16dp" />
 
@@ -91,6 +92,7 @@
                 android:id="@+id/treedivision"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="Division: "
                 android:textColor="@color/text_col"
                 android:textSize="16dp" />
@@ -100,6 +102,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Class: "
+                android:fontFamily="sans-serif-medium"
+
                 android:textColor="@color/text_col"
                 android:textSize="16dp" />
 
@@ -107,6 +111,8 @@
                 android:id="@+id/treeorder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+
                 android:text="Order: "
                 android:textColor="@color/text_col"
                 android:textSize="16dp" />
@@ -115,6 +121,8 @@
                 android:id="@+id/treefamily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+
                 android:text="Family: "
                 android:textColor="@color/text_col"
                 android:textSize="16dp" />
@@ -122,6 +130,8 @@
             <TextView
                 android:id="@+id/treegenus"
                 android:layout_width="wrap_content"
+                android:fontFamily="sans-serif-medium"
+
                 android:layout_height="wrap_content"
                 android:text="Genus: "
                 android:textColor="@color/text_col"
@@ -130,6 +140,8 @@
             <TextView
                 android:id="@+id/treespecies"
                 android:layout_width="wrap_content"
+                android:fontFamily="sans-serif-medium"
+
                 android:layout_height="wrap_content"
                 android:text="Species: "
                 android:textColor="@color/text_col"
@@ -140,11 +152,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-light"
+
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="plant_data"
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="18dp" />
 
         </LinearLayout>
 

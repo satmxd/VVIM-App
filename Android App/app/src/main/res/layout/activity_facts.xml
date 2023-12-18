@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,56 +7,62 @@
     android:background="@drawable/homepagbackground"
     android:orientation="vertical"
     tools:context=".FactsActivity">
-    <ImageView
-        android:id="@+id/backbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="15dp"
-        android:src="@drawable/backbutton"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        app:tint="@color/white"/>
-
-    <ImageView
-        android:id="@+id/treeimg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/home"
-        android:padding="20dp"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/factnamebox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:padding="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Name"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
-    <TextView
-        android:id="@+id/factbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Fact1"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/backbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="15dp"
+            android:src="@drawable/backbutton"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            app:tint="@color/white"/>
 
-    <Button
-        android:id="@+id/nextbtn"
-        android:layout_width="wrap_content"
-        android:padding="10dp"
-        android:layout_height="wrap_content"
-        android:onClick="onclick"
-        android:layout_gravity="center"
-        android:text="next"/>
+        <ImageView
+            android:id="@+id/treeimg"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/home"
+            android:padding="20dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/factnamebox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/factbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Fact1"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/nextbtn"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:onClick="onclick"
+            android:layout_gravity="center"
+            android:text="next"/>
+    </LinearLayout>
 
 
-</LinearLayout>
+
+</ScrollView>

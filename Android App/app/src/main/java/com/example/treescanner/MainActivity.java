@@ -3,28 +3,43 @@ package com.example.treescanner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    CardView qrscan;
+    CardView exitbtn;
+    CardView searchbtn;
+    CardView quizbtn;
+    CardView factsbtn;
+    CardView gallerybtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-        CardView qrscan = findViewById(R.id.QRScanbutton);
-        CardView exitbtn = findViewById(R.id.ExitButton);
-        CardView searchbtn = findViewById(R.id.searchbtn);
-        CardView quizbtn = findViewById(R.id.Quizbtn);
-        CardView factsbtn= findViewById(R.id.FactsButton);
-        CardView gallerybtn = findViewById(R.id.GalleryButton);
+
+        qrscan = findViewById(R.id.QRScanbutton);
+        exitbtn = findViewById(R.id.ExitButton);
+        searchbtn = findViewById(R.id.searchbtn);
+        quizbtn = findViewById(R.id.Quizbtn);
+        factsbtn= findViewById(R.id.FactsButton);
+        gallerybtn = findViewById(R.id.GalleryButton);
         qrscan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,QRScanActivity.class));
-                finish();
+                    startActivity(new Intent(MainActivity.this,QRScanActivity.class));
+                    finish();
+
+
 
             }
         });
@@ -64,8 +79,13 @@ public class MainActivity extends AppCompatActivity {
         gallerybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, GalleryActivity.class));
-                finish();
+                if(isConnected){
+                    startActivity(new Intent(MainActivity.this,GalleryActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(MainActivity.this, "Please connect to a wifi network", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
