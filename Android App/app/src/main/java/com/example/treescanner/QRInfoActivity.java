@@ -35,6 +35,7 @@ public class QRInfoActivity extends AppCompatActivity {
     private String species;
     private String details;
     private String url;
+    private String origin ;
     private static final String TAG = QRInfoActivity.class.getName();
 
 
@@ -45,7 +46,7 @@ public class QRInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrinfo);
         //TODO: backbutton for both origins teleporting to same activity, change.
-
+        origin = getIntent().getStringExtra("origin");
         String qrd = getIntent().getStringExtra("qrdata");
         String qrd_sliced = qrd.substring(qrd.length()-2, qrd.length());
         Integer id = Integer.valueOf(qrd_sliced);
@@ -54,8 +55,13 @@ public class QRInfoActivity extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(QRInfoActivity.this, MainActivity.class));
-                finish();
+                if(origin.equals("qrscan")){
+                    startActivity(new Intent(QRInfoActivity.this, QRScanActivity.class));
+                    finish();
+                }else{
+                    startActivity(new Intent(QRInfoActivity.this, TreeMenu.class));
+                    finish();
+                }
             }
         });
 

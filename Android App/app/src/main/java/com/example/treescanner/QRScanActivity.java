@@ -82,6 +82,7 @@ public class QRScanActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(QRScanActivity.this, QRInfoActivity.class);
                         intent.putExtra("qrdata", data);
+                        intent.putExtra("origin", "qrscan");
 
                         startActivity(intent);
 //                        finish();
@@ -114,6 +115,7 @@ public class QRScanActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             startActivity(new Intent(QRScanActivity.this,MainActivity.class));
+
             finish();
         }
 

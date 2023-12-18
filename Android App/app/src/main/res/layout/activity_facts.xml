@@ -11,6 +11,7 @@
         android:id="@+id/backbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="15dp"
         android:src="@drawable/backbutton"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
@@ -19,23 +20,34 @@
     <ImageView
         android:id="@+id/treeimg"
         android:layout_width="match_parent"
-        android:layout_height="407dp"
+        android:layout_height="300dp"
         android:src="@drawable/home"
         android:padding="20dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/factnamebox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:padding="20dp"
         android:layout_marginTop="20dp"
-        app:tint="@color/white" />
-        <TextView
-            android:id="@+id/factbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="8dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:padding="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Fact1"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/factbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Fact1"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/nextbtn"

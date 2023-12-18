@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +26,10 @@ public class FactsActivity extends AppCompatActivity {
     ImageView treeimg;
     DBHelper db;
     Cursor res;
+    Integer nlines;
+    ArrayList<String> factlist;
+    TextView factbox;
+    TextView factnamebox;
 
 
     @Override
@@ -31,15 +37,16 @@ public class FactsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facts);
 
-        TextView factbox = findViewById(R.id.factbox);
+        factbox = findViewById(R.id.factbox);
         TextView nextbtn = findViewById(R.id.nextbtn);
+        factnamebox = findViewById(R.id.factnamebox);
         treeimg = findViewById(R.id.treeimg);
         db = new DBHelper(this);
         res = db.get_data();
 
         InputStream input_txt = getBaseContext().getResources().openRawResource(R.raw.facts);
         BufferedReader bfr = new BufferedReader(new InputStreamReader(input_txt));
-        ArrayList<String> fatlist = new ArrayList<>();
+        factlist = new ArrayList<>();
 
         String line;
         try {
@@ -48,7 +55,7 @@ public class FactsActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         while(line != null){
-            fatlist.add(line);
+            factlist.add(line);
             try {
                 line = bfr.readLine();
             } catch (IOException e) {
@@ -61,24 +68,33 @@ public class FactsActivity extends AppCompatActivity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Collections.shuffle(fatlist);
-        int nlines = fatlist.size();
+        Collections.shuffle(factlist);
+        nlines = factlist.size();
+        update();
 
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (count>nlines){
-                    count = 0;
-                }
-                String fact = fatlist.get(count);
-                String treeno = fact.substring(fact.length()-2, fact.length());
-                Integer id = Integer.valueOf(treeno);
-                factbox.setText(fact);
-                res.moveToPosition(id);
-                String url = res.getString(11);
-                Glide.with(FactsActivity.this).load(url).centerCrop().into(treeimg);
+                update();
             }
 
         });
+    }
+
+    private void update(){
+        if (count>=nlines){
+            count = 0;
+        }
+        String fact = factlist.get(count);
+        String treeno = fact.substring(fact.length()-2, fact.length());
+        Integer id = Integer.valueOf(treeno);
+        res.moveToPosition(id);
+        String qrd = res.getString(0);
+        factnamebox.setText(res.getString(1));
+        factbox.setText(fact.substring(0, fact.length()-2));
+
+
+        Glide.with(FactsActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-1.png").into(treeimg);
+        count+=1;
     }
 }

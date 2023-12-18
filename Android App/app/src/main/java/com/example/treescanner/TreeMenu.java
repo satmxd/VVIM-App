@@ -38,9 +38,11 @@ public class TreeMenu extends AppCompatActivity {
         listView = findViewById(R.id.treeList);
         DBHelper db = new DBHelper(this);
         Cursor data = db.get_data();
+        int c = 1;
         while(data.moveToNext()){
-            names.add(data.getString(data.getColumnIndex("name")));
+            names.add(String.valueOf(c)+". "+data.getString(data.getColumnIndex("name")));
             qrid.add(data.getString(data.getColumnIndex("id")));
+            c++;
         }
         data.close();
         arrayAdapter = new ArrayAdapter<>(this, R.layout.white_text, names);
@@ -51,6 +53,7 @@ public class TreeMenu extends AppCompatActivity {
                 Intent intent = new Intent(TreeMenu.this, QRInfoActivity.class);
                 String e = qrid.get(i);
                 intent.putExtra("qrdata", e);
+                intent.putExtra("origin", "menu");
                 startActivity(intent);
             }
         });
