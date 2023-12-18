@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         CardView exitbtn = findViewById(R.id.ExitButton);
         CardView searchbtn = findViewById(R.id.searchbtn);
         CardView quizbtn = findViewById(R.id.Quizbtn);
+        CardView factsbtn= findViewById(R.id.FactsButton);
+        CardView gallerybtn = findViewById(R.id.GalleryButton);
         qrscan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +49,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, QuizActivityMain.class));
+                finish();
+            }
+        });
+
+        factsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, FactsActivity.class));
+                finish();
+            }
+        });
+
+        gallerybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, GalleryActivity.class));
                 finish();
             }
         });

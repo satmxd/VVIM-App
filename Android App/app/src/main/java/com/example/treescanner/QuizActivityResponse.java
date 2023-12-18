@@ -1,11 +1,13 @@
 package com.example.treescanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Pair;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +63,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (answer == optBox_Numbered.get(0)){
-                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuizActivityResponse.this, "correct answer", Toast.LENGTH_SHORT).show();
                     answer.setBackgroundColor(Color.parseColor("#00FF00"));
 
                     update(qintent);
@@ -74,7 +76,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (answer == optBox_Numbered.get(1)){
-                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuizActivityResponse.this, "correct answer", Toast.LENGTH_SHORT).show();
                     answer.setBackgroundColor(Color.parseColor("#00FF00"));
 
                     update(qintent);
@@ -88,7 +90,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (answer == optBox_Numbered.get(2)){
-                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuizActivityResponse.this, "correct answer", Toast.LENGTH_SHORT).show();
                     answer.setBackgroundColor(Color.parseColor("#00FF00"));
 
                     update(qintent);
@@ -102,12 +104,13 @@ public class QuizActivityResponse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (answer == optBox_Numbered.get(3)){
-                    Toast.makeText(QuizActivityResponse.this, "congrats ur not a failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuizActivityResponse.this, "correct answer", Toast.LENGTH_SHORT).show();
                     answer.setBackgroundColor(Color.parseColor("#00FF00"));
 
                     update(qintent);
                 }else{
                     optBox_Numbered.get(3).setBackgroundColor(Color.parseColor("#FF0000"));
+
                 }
             }
         });
@@ -198,10 +201,10 @@ public class QuizActivityResponse extends AppCompatActivity {
 
 
     private void update(String type){
-        optBox.get(0).setBackgroundColor(Color.parseColor("#252525"));
-        optBox.get(1).setBackgroundColor(Color.parseColor("#252525"));
-        optBox.get(2).setBackgroundColor(Color.parseColor("#252525"));
-        optBox.get(3).setBackgroundColor(Color.parseColor("#252525"));
+        optBox.get(0).setBackgroundColor(Color.parseColor("#1E1E1E"));
+        optBox.get(1).setBackgroundColor(Color.parseColor("#1E1E1E"));
+        optBox.get(2).setBackgroundColor(Color.parseColor("#1E1E1E"));
+        optBox.get(3).setBackgroundColor(Color.parseColor("#1E1E1E"));
 
         if(type.equals("common")){
             Pair<String [], String[]> getVal = CommonNames();

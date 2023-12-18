@@ -73,7 +73,10 @@ public class QRInfoActivity extends AppCompatActivity {
         TextView genusCol = findViewById(R.id.treegenus);
         TextView speciesCol = findViewById(R.id.treespecies);
         TextView detailsCol = findViewById(R.id.treedetails);
-        ImageView treeimg = findViewById(R.id.dispimg);
+        ImageView treeimg1 = findViewById(R.id.dispimg1);
+        ImageView treeimg2 = findViewById(R.id.dispimg2);
+        ImageView treeimg3 = findViewById(R.id.dispimg3);
+
 
 
 
@@ -89,7 +92,6 @@ public class QRInfoActivity extends AppCompatActivity {
             genus = res.getString(8);
             species = res.getString(9);
             details = res.getString(10);
-            url = res.getString(11);
 
             nameCol.setText(name);
             titlecol.setText(title);
@@ -110,7 +112,10 @@ public class QRInfoActivity extends AppCompatActivity {
 
             detailsCol.setText(details);
 
-            Glide.with(QRInfoActivity.this).load(url).centerCrop().into(treeimg);
+
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-1.png").into(treeimg1);
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-2.png").into(treeimg2);
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-3.png").into(treeimg3);
 
 
         } else {
