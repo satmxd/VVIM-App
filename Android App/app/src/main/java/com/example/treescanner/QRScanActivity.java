@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -81,7 +82,12 @@ public class QRScanActivity extends AppCompatActivity {
                         Toast.makeText(QRScanActivity.this, "Showing Info", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(QRScanActivity.this, QRInfoActivity.class);
-                        intent.putExtra("qrdata", data);
+                        //TODO-fix split
+                        String[] qrdata = data.split("\\[", 5);
+                        Log.d("qrdata", String.valueOf(qrdata));
+                        String code = qrdata[qrdata.length-1].substring(0,-1);
+                        Toast.makeText(QRScanActivity.this, code, Toast.LENGTH_SHORT).show();
+                        intent.putExtra("qrdata", code);
                         intent.putExtra("origin", "qrscan");
 
                         startActivity(intent);
