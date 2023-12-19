@@ -15,7 +15,8 @@ QR-scan-based Android app for trees along with interactive quiz & facts for VVIM
   - Easy-to-use Android app made using Android Studio and Java
   - Gives detailed information on trees including their binomial nomenclature, medicinal values, common names, etc.
   - Interactive quizzes and facts to increase the learning outcomes of users.
-  - 3D View of the school with location of every tree present for easier access.
+  - 3D View of the school with the location of every tree present for easier access.
+  - Gallery of different trees across the school.
 
 ## Screenshots
 | Splash Screen | Home page | Information | Quiz | Quiz Response |
