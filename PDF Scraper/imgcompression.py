@@ -3,8 +3,8 @@ from pickletools import optimize
 from PIL import Image
 import os
 
-impath = 'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs\\'
-savepath = 'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\data\\picdb\\'
+impath = 'PDF Scraper\\imgs\\'
+savepath = 'data\\picdb\\'
 
 arr = os.listdir(impath)
 print(arr)

@@ -36,7 +36,7 @@ import pyautogui
 # extracing images from saved file
 #=================================
 lines = []
-with open('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\data', 'r', encoding="utf8") as f:
+with open('PDF Scraper\\data', 'r', encoding="utf8") as f:
     for line in f:
         lines.append(line.split("'"))
 ln = []
@@ -54,7 +54,7 @@ from spire.pdf import *
 doc = PdfDocument()
 
 # Load a PDF document
-doc.LoadFromFile('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs-compressed.pdf')
+doc.LoadFromFile('PDF Scraper\\imgs-compressed.pdf')
 
 images = []
 step = 3
@@ -90,7 +90,7 @@ index = 246
 j = 1
 for image in images:
     print(image)
-    imageFileName = f'D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\imgs\\{ln[index]}-{j}.png'
+    imageFileName = f'PDF Scraper\\imgs\\{ln[index]}-{j}.png'
     index += 1
     j += 1
     if j > 3:

@@ -1,7 +1,7 @@
 import random
 l = []
 lines = ''
-with open('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\treedb.txt', 'r', encoding="utf8") as f:
+with open('PDF Scraper\\treedb.txt', 'r', encoding="utf8") as f:
     for line in f:
         lines += '|' + (line.removesuffix('\n'))
 
@@ -13,7 +13,7 @@ for i in lines.split('BACK'):
 
 temp = []
 codenames = []
-with open('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\treedbrefined.txt') as file:
+with open('PDF Scraper\\treedbrefined.txt') as file:
     for line in file:
             temp.append(line)
     for i in temp:
@@ -21,7 +21,7 @@ with open('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 2
 
 for i in x:
     l.append(i[0].split('|'))
-with open('D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\treedbrefined2.txt', 'a') as fr:
+with open('PDF Scraper\\treedbrefined2.txt', 'a') as fr:
 
     for tree in range(len(l)):
         name = l[tree][len(l[tree])-2].partition('/')[0]

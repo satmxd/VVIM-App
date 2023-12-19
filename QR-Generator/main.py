@@ -14,7 +14,7 @@ class App(ctk.CTk):
         super().__init__(*args, **kwargs)
         self.title("QR Code GUI")   
         self.geometry("650x350")
-        self.save_path = 'bgpy.jpg'
+        self.save_path = 'QR-Generator\\bgpy.jpg'
         self.boxsize = 20
         self.border = 1
         self.data = 'test'
@@ -108,13 +108,13 @@ class App(ctk.CTk):
 
 
     def make_qr(self):#, boxsize, border, data, embed_img = True):
-        self.boxsize = self.boxsizeentry.get()
-        self.border = self.bordersizeentry.get()
+        self.boxsize = self.boxsizeentry.get() if self.boxsizeentry.get() != '' else 50
+        self.border = self.bordersizeentry.get() if self.bordersizeentry.get() != '' else 2
         self.data = self.textinputentry.get()
 
 
         def prep_image():
-            logo_link = 'py.jpg'
+            logo_link = 'QR-Generator\\py.jpg'
             logo = Image.open(logo_link)
             width = 150
             wpercent = (width/float(logo.size[0]))
@@ -142,7 +142,7 @@ class App(ctk.CTk):
         self.filename = self.filenameentry.get()
         date = datetime.now().strftime("%Y-%m-%d_%I-%M-%Spm")
         self.filename += str(date)
-        self.save_path = ("codes/{0}.{1}".format(self.filename, 'png'))
+        self.save_path = ("QR-Generator\\codes\\{0}.{1}".format(self.filename, 'png'))
         self.img.save(self.save_path)
         print(self.save_path)
 
