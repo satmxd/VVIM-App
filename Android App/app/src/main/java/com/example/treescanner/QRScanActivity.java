@@ -83,11 +83,10 @@ public class QRScanActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(QRScanActivity.this, QRInfoActivity.class);
                         //TODO-fix split
-                        String[] qrdata = data.split("\\[", 5);
-                        Log.d("qrdata", String.valueOf(qrdata));
-                        String code = qrdata[qrdata.length-1].substring(0,-1);
+                        String[] qrdata = data.split("\\[", 2);
+                        String code = qrdata[qrdata.length-1];
                         Toast.makeText(QRScanActivity.this, code, Toast.LENGTH_SHORT).show();
-                        intent.putExtra("qrdata", code);
+                        intent.putExtra("qrdata", code.substring(0, code.length()-1));
                         intent.putExtra("origin", "qrscan");
 
                         startActivity(intent);

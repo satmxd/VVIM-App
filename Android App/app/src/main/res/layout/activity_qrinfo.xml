@@ -86,7 +86,7 @@
                 android:text="Kingdom: "
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treedivision"
@@ -95,7 +95,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:text="Division: "
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treeclass"
@@ -105,7 +105,7 @@
                 android:fontFamily="sans-serif-medium"
 
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treeorder"
@@ -115,7 +115,7 @@
 
                 android:text="Order: "
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treefamily"
@@ -125,7 +125,7 @@
 
                 android:text="Family: "
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treegenus"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:text="Genus: "
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treespecies"
@@ -145,20 +145,19 @@
                 android:layout_height="wrap_content"
                 android:text="Species: "
                 android:textColor="@color/text_col"
-                android:textSize="16dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/treedetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:fontFamily="sans-serif-light"
-
+                android:gravity="fill"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="plant_data"
                 android:textColor="@color/text_col"
-                android:textSize="18dp" />
+                android:textSize="22dp" />
 
         </LinearLayout>
 

@@ -9,10 +9,15 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -102,30 +107,45 @@ public class QRInfoActivity extends AppCompatActivity {
             name = res.getString(1);
             title = res.getString(2);
             kingdom = res.getString(3);
+            SpannableString skingdom = new SpannableString("Kingdom: " +kingdom);
             division = res.getString(4);
+            SpannableString sdivison = new SpannableString("Division: "+division);
             class_ = res.getString(5);
+            SpannableString sclass_ = new SpannableString("Class: "+class_);
             order = res.getString(6);
+            SpannableString sorder = new SpannableString("Order: "+order);
             family = res.getString(7);
+            SpannableString sfamily = new SpannableString("Family: "+family);
             genus = res.getString(8);
+            SpannableString sgenus = new SpannableString("Genus: "+genus);
             species = res.getString(9);
+            SpannableString sspecies = new SpannableString("Species: "+species);
             details = res.getString(10);
 
             nameCol.setText(name);
             titlecol.setText(title);
+            StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
 
-            kingdomCol.setText("Kingdom: " + kingdom);
+            skingdom.setSpan(boldSpan, 0, 8, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            kingdomCol.setText(skingdom);
 
-            divisionCol.setText("Division: " + division);
+            sdivison.setSpan(boldSpan, 0, 9, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            divisionCol.setText(sdivison);
 
-            classCol.setText("Class: " + class_);
+            sclass_.setSpan(boldSpan, 0, 7, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            classCol.setText(sclass_);
 
-            orderCol.setText("Order: " + order);
+            sorder.setSpan(boldSpan, 0, 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            orderCol.setText(sorder);
 
-            familyCol.setText("Family: " + family);
+            sfamily.setSpan(boldSpan, 0, 7, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            familyCol.setText(sfamily);
 
-            genusCol.setText("Genus: " + genus);
+            sgenus.setSpan(boldSpan, 0, 6, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            genusCol.setText(sgenus);
 
-            speciesCol.setText("Species: " + species);
+            sspecies.setSpan(boldSpan, 0, 8, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            speciesCol.setText(sspecies);
 
             detailsCol.setText(details);
 
