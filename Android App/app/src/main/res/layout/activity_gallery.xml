@@ -28,8 +28,8 @@
         <ImageView
             android:id="@+id/galleryimg1"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="400dp"
+            android:paddingVertical="10dp"
+            android:layout_height="350dp"
             android:src="@drawable/baseline_photo_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,31 +37,32 @@
 
         <ImageView
             android:id="@+id/galleryimg2"
-            android:padding="10dp"
+            android:layout_width="200dp"
 
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
             android:src="@drawable/baseline_photo_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/galleryimg1" />
 
         <ImageView
             android:id="@+id/galleryimg3"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp"
 
             android:src="@drawable/baseline_photo_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/galleryimg2"
             app:layout_constraintTop_toBottomOf="@+id/galleryimg1" />
 
         <ImageView
             android:id="@+id/galleryimg4"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
 
-            android:padding="10dp"
+            android:paddingVertical="10dp"
             android:src="@drawable/baseline_photo_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,29 +70,23 @@
 
         <ImageView
             android:id="@+id/galleryimg5"
-            android:layout_width="220dp"
-
-            android:layout_height="220dp"
-            android:layout_marginStart="12dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:padding="10dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/baseline_photo_24"
-            app:layout_constraintEnd_toStartOf="@+id/galleryimg6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/galleryimg4" />
 
         <ImageView
             android:id="@+id/galleryimg6"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
             android:padding="10dp"
             android:src="@drawable/baseline_photo_24"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/galleryimg2"
-            app:layout_constraintTop_toBottomOf="@+id/galleryimg4"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/galleryimg4" />
 
         <TextView
             android:layout_width="match_parent"
