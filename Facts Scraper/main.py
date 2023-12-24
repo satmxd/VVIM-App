@@ -4,10 +4,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-cService = webdriver.ChromeService(executable_path='D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\Facts Scraper\\chromedriver.exe')
+cService = webdriver.ChromeService(executable_path='Facts Scraper\\chromedriver.exe')
 driver = webdriver.Chrome(service = cService)
 
-path = "D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\PDF Scraper\\data"
+path = "PDF Scraper\\data"
 codenames = []
 codes = []
 temp = []
@@ -32,5 +32,5 @@ for n, i in enumerate(codenames):
         text.append(" ")
         continue
 
-with open("D:\\Users\\Satvik\\Documents\\Data\\Studies\\Class 11\\Tree Scanner 23\\Code\\Git\\VVIM-App\\Facts Scraper\\facts.txt", 'w', encoding="utf8") as fx:
+with open("Facts Scraper\\facts.txt", 'w', encoding="utf8") as fx:
     fx.write("\n".join(text))
