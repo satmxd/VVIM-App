@@ -24,13 +24,12 @@ import java.util.ArrayList;
 public class TreeMenu extends AppCompatActivity {
 
     ListView listView;
-    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> names = new ArrayList<>();
     ArrayList<String> qrid = new ArrayList<>();
 
     ArrayAdapter<String> arrayAdapter;
 
 
-    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +38,13 @@ public class TreeMenu extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
         Cursor data = db.get_data();
         int c = 1;
+        //TODO TMRND TREE showing up twice(37,38)
+        //TODO update entries into tree menu not working from db
         while(data.moveToNext()){
-            names.add(String.valueOf(c)+". "+data.getString(data.getColumnIndex("name")));
-            qrid.add(data.getString(data.getColumnIndex("id")));
+            names.add(String.valueOf(c)+". "+data.getString(1));
+            qrid.add(data.getString(0));
             c++;
         }
-        data.close();
         arrayAdapter = new ArrayAdapter<>(this, R.layout.white_text, names);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

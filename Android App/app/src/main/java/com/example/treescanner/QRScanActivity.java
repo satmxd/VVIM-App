@@ -82,7 +82,6 @@ public class QRScanActivity extends AppCompatActivity {
                         Toast.makeText(QRScanActivity.this, "Showing Info", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(QRScanActivity.this, QRInfoActivity.class);
-                        //TODO-fix split
                         String[] qrdata = data.split("\\[", 2);
                         String code = qrdata[qrdata.length-1];
                         Toast.makeText(QRScanActivity.this, code, Toast.LENGTH_SHORT).show();
