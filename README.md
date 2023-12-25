@@ -8,7 +8,7 @@ QR-scan-based Android app for trees along with interactive quiz & facts for VVIM
   - Converted to SQLite database for easier Android App compatibility
 - **QR Generator**
   - Prompt-based QR generator made using Python
-  - Libraries used- customtkinter, qrcode, PIL, etc.
+  - Libraries used- customtkinter, qrcode, Pillow, etc.
   - Editable parameters like QR size, pixel width, embedded logo, etc.
   - Used to create QR codes of trees which give information about them when scanned using the App.
 - **Android App**
