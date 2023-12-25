@@ -68,31 +68,42 @@ public class GalleryActivity extends AppCompatActivity {
         Collections.shuffle(imglist);
         Collections.shuffle(imgviewlist);
         int[] pos = {1,2,3};
-            //TODO fix db entry updation
-        //TODO fix threading issues
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                        for(int i=0;i<6;i++){
-                            String img = imglist.get(i);
-                            Collections.shuffle(Collections.singletonList(pos));
-                            String link = "https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+img+"-"+pos[0]+".png";
+        //            Glide.with(GalleryActivity.this).load(link).into(imgviewlist.get(i));
+        for(int i=0;i<6;i++) {
+            String img = imglist.get(i);
+            Collections.shuffle(Collections.singletonList(pos));
+            String link = "https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/" + img + "-" + pos[0] + ".png";
+            Glide.with(GalleryActivity.this).load(link).into(imgviewlist.get(i));
+        }
+    }
+}
 
-                            URL url;
-                            try {
-                                url = new URL(link);
-                            } catch (MalformedURLException e) {
-                                throw new RuntimeException(e);
-                            }
-                            int loopi = i;
-                            try {
-                                bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                            imgviewlist.get(loopi).setImageBitmap(bitmap);
-                }
-            }}).start();
+
+        //TODO fix db entry updation
+        //TODO fix threading issues
+
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                        for(int i=0;i<6;i++){
+//                            String img = imglist.get(i);
+//                            Collections.shuffle(Collections.singletonList(pos));
+//                            String link = "https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+img+"-"+pos[0]+".png";
+//
+//                            URL url;
+//                            try {
+//                                url = new URL(link);
+//                            } catch (MalformedURLException e) {
+//                                throw new RuntimeException(e);
+//                            }
+//                            int loopi = i;
+//                            try {
+//                                bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                            } catch (IOException e) {
+//                                throw new RuntimeException(e);
+//                            }
+//                }
+//            }}).start();
 
 //            URL url = null;
 //            try {
@@ -109,7 +120,7 @@ public class GalleryActivity extends AppCompatActivity {
 //            }
 
 //            Glide.with(GalleryActivity.this).load(link).into(imgviewlist.get(i));
-        }
+
 
 
 
@@ -129,5 +140,3 @@ public class GalleryActivity extends AppCompatActivity {
 //            }
 //    }
 
-
-}
