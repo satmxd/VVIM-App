@@ -166,7 +166,7 @@ public class QuizActivityResponse extends AppCompatActivity {
 
     private Map<Integer, String> MedicalQuestions(){
         res.moveToFirst();
-        InputStream input_txt = getBaseContext().getResources().openRawResource(R.raw.drugs);
+        InputStream input_txt = getBaseContext().getResources().openRawResource(R.raw.medical);
         BufferedReader bfr = new BufferedReader(new InputStreamReader(input_txt));
         Map<Integer, String> toreturn = Collections.emptyMap();
 
@@ -194,7 +194,7 @@ public class QuizActivityResponse extends AppCompatActivity {
         List<String> tree = new ArrayList<>();
         res.moveToFirst();
         while(res.moveToNext()){
-             tree.add(res.getString(2));
+            tree.add(res.getString(2));
         }
         return tree;
     }
@@ -219,18 +219,18 @@ public class QuizActivityResponse extends AppCompatActivity {
             answer = optBox.get(3);
         }
         if(type.equals("science")){
-                Pair<String [], String[]> getVal = ScientificNames();
-                String[] ans_list = getVal.first;
-                String[] options_list = getVal.second;
-                questionBox.setText("What is the scientific name of " + ans_list[1]+ " ?");
-                Collections.shuffle(optBox);
-                optBox.get(0).setText(options_list[0]);
-                optBox.get(1).setText(options_list[1]);
-                optBox.get(2).setText(options_list[2]);
-                optBox.get(3).setText(ans_list[0]);
-                answer = optBox.get(3);
-            }
+            Pair<String [], String[]> getVal = ScientificNames();
+            String[] ans_list = getVal.first;
+            String[] options_list = getVal.second;
+            questionBox.setText("What is the scientific name of " + ans_list[1]+ " ?");
+            Collections.shuffle(optBox);
+            optBox.get(0).setText(options_list[0]);
+            optBox.get(1).setText(options_list[1]);
+            optBox.get(2).setText(options_list[2]);
+            optBox.get(3).setText(ans_list[0]);
+            answer = optBox.get(3);
         }
+    }
 
 
 
