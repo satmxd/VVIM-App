@@ -194,7 +194,7 @@ public class QuizActivityResponse extends AppCompatActivity {
         List<String> tree = new ArrayList<>();
         res.moveToFirst();
         while(res.moveToNext()){
-            tree.add(res.getString(2));
+            tree.add(res.getString(1));
         }
         return tree;
     }
@@ -239,9 +239,9 @@ public class QuizActivityResponse extends AppCompatActivity {
             Collections.shuffle(optBox);
             optBox.get(0).setText(treenames.remove(ques.first.intValue()));
             Collections.shuffle(treenames);
-            optBox.get(0).setText(treenames.get(0));
-            optBox.get(1).setText(treenames.get(1));
-            optBox.get(2).setText(treenames.get(2));
+            optBox.get(1).setText(treenames.get(0));
+            optBox.get(2).setText(treenames.get(1));
+            optBox.get(3).setText(treenames.get(2));
             answer = optBox.get(3);
         }
     }
