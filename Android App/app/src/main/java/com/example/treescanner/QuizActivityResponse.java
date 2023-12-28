@@ -164,11 +164,11 @@ public class QuizActivityResponse extends AppCompatActivity {
     }
 
 
-    private Map<Integer, String> MedicalQuestions(){
+    private List<Pair<Integer, String>> MedicalQuestions(){
         res.moveToFirst();
         InputStream input_txt = getBaseContext().getResources().openRawResource(R.raw.medical);
         BufferedReader bfr = new BufferedReader(new InputStreamReader(input_txt));
-        Map<Integer, String> toreturn = Collections.emptyMap();
+        List<Pair<Integer, String>> toreturn = new ArrayList<>();
 
         String line;
         try {
@@ -179,7 +179,7 @@ public class QuizActivityResponse extends AppCompatActivity {
         while(line != null){
             String qrd_sliced = line.substring(line.length()-2, line.length());
             Integer id = Integer.valueOf(qrd_sliced);
-            toreturn.put(id, line);
+            toreturn.add(new Pair<>(id, line));
             try {
                 line = bfr.readLine();
             } catch (IOException e) {
@@ -218,7 +218,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             optBox.get(3).setText(ans_list[0]);
             answer = optBox.get(3);
         }
-        if(type.equals("science")){
+        else if(type.equals("science")){
             Pair<String [], String[]> getVal = ScientificNames();
             String[] ans_list = getVal.first;
             String[] options_list = getVal.second;
@@ -228,6 +228,20 @@ public class QuizActivityResponse extends AppCompatActivity {
             optBox.get(1).setText(options_list[1]);
             optBox.get(2).setText(options_list[2]);
             optBox.get(3).setText(ans_list[0]);
+            answer = optBox.get(3);
+        }
+        else if(type.equals("drugs")){
+            List<Pair<Integer, String>> questions = MedicalQuestions();
+            List<String> treenames = getTreeNames();
+            Collections.shuffle(questions);
+            Pair<Integer, String> ques = questions.get(0);
+            questionBox.setText(ques.second);
+            Collections.shuffle(optBox);
+            optBox.get(0).setText(treenames.remove(ques.first.intValue()));
+            Collections.shuffle(treenames);
+            optBox.get(0).setText(treenames.get(0));
+            optBox.get(1).setText(treenames.get(1));
+            optBox.get(2).setText(treenames.get(2));
             answer = optBox.get(3);
         }
     }
