@@ -60,8 +60,7 @@ public class QuizActivityMain extends AppCompatActivity {
         imagebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuizActivityMain.this, QuizActivityResponse.class);
-                intent.putExtra("qintent", "image");
+                Intent intent = new Intent(QuizActivityMain.this, ActivityQuizResponseImage.class);
                 startActivity(intent);
             }
         });

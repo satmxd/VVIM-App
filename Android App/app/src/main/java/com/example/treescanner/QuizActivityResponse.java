@@ -1,19 +1,19 @@
 package com.example.treescanner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Pair;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,9 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Random;
 
 public class QuizActivityResponse extends AppCompatActivity {
 
@@ -36,7 +34,7 @@ public class QuizActivityResponse extends AppCompatActivity {
 
     TextView answer;
     String qintent;
-    List<Integer> commonNameList;
+    ImageView imageBox;
     static List<TextView> optBox_Numbered;
 
 
@@ -46,7 +44,6 @@ public class QuizActivityResponse extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_response);
         db = new DBHelper(this);
         questionBox = findViewById(R.id.question);
-        Button nextq = findViewById(R.id.quiznext);
         optBox = new ArrayList<>();
         optBox.add(0, findViewById(R.id.option1));
         optBox.add(1, findViewById(R.id.option2));
@@ -163,6 +160,16 @@ public class QuizActivityResponse extends AppCompatActivity {
         return new Pair<>(correct, options);
     }
 
+    private List<Pair<String, String>> ImageQuestion(){
+        res.moveToFirst();
+        List<Pair<String, String>> toreturn = new ArrayList<>();
+        toreturn.add(new Pair<>(res.getString(1), res.getString(0)));
+        while(res.moveToNext()){
+            toreturn.add(new Pair<>(res.getString(1), res.getString(0)));
+        }
+        return toreturn;
+    }
+
 
     private List<Pair<Integer, String>> MedicalQuestions(){
         res.moveToFirst();
@@ -177,7 +184,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         while(line != null){
-            String qrd_sliced = line.substring(line.length()-2, line.length());
+            String qrd_sliced = line.substring(line.length()-2);
             Integer id = Integer.valueOf(qrd_sliced);
             toreturn.add(new Pair<>(id, line));
             try {
@@ -193,6 +200,7 @@ public class QuizActivityResponse extends AppCompatActivity {
     private List<String> getTreeNames(){
         List<String> tree = new ArrayList<>();
         res.moveToFirst();
+        tree.add(res.getString(1));
         while(res.moveToNext()){
             tree.add(res.getString(1));
         }
@@ -235,7 +243,7 @@ public class QuizActivityResponse extends AppCompatActivity {
             List<String> treenames = getTreeNames();
             Collections.shuffle(questions);
             Pair<Integer, String> ques = questions.get(0);
-            questionBox.setText(ques.second);
+            questionBox.setText(ques.second.substring(0, ques.second.length()-2));
             Collections.shuffle(optBox);
             optBox.get(0).setText(treenames.remove(ques.first.intValue()));
             Collections.shuffle(treenames);
@@ -243,6 +251,20 @@ public class QuizActivityResponse extends AppCompatActivity {
             optBox.get(2).setText(treenames.get(1));
             optBox.get(3).setText(treenames.get(2));
             answer = optBox.get(3);
+        }
+        else if(type.equals("image")){
+            List<Pair<String, String>> questions =  ImageQuestion();
+            Collections.shuffle(questions);
+            questionBox.setText("Guess which tree this is");
+            Collections.shuffle(optBox);
+            Random rand = new Random();
+            imageBox.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+            Glide.with(QuizActivityResponse.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ rand.nextInt(4) +".png").into(imageBox);
+            optBox.get(0).setText(questions.get(0).first);
+            optBox.get(1).setText(questions.get(1).first);
+            optBox.get(2).setText(questions.get(2).first);
+            optBox.get(3).setText(questions.get(3).first);
+            answer = optBox.get(0);
         }
     }
 
