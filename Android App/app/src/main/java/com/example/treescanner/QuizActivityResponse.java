@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,7 +35,6 @@ public class QuizActivityResponse extends AppCompatActivity {
 
     TextView answer;
     String qintent;
-    ImageView imageBox;
     static List<TextView> optBox_Numbered;
 
 
@@ -255,11 +255,20 @@ public class QuizActivityResponse extends AppCompatActivity {
         else if(type.equals("image")){
             List<Pair<String, String>> questions =  ImageQuestion();
             Collections.shuffle(questions);
-            questionBox.setText("Guess which tree this is");
+            questionBox.setText("Can you guess the name of this tree?");
+
+            LinearLayout mainlyt = findViewById(R.id.quizlinearlayout);
+            ImageView imgbox = new ImageView(this);
+            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(750,750 );
+            layoutParams.gravity = Gravity.CENTER;
+            imgbox.setLayoutParams(layoutParams);
+            imgbox.setPadding(20, 20, 20, 10);
+
+            mainlyt.addView(imgbox, 1);
+
             Collections.shuffle(optBox);
             Random rand = new Random();
-            imageBox.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-            Glide.with(QuizActivityResponse.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ rand.nextInt(4) +".png").into(imageBox);
+            Glide.with(QuizActivityResponse.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ rand.nextInt(4) +".png").into(imgbox);
             optBox.get(0).setText(questions.get(0).first);
             optBox.get(1).setText(questions.get(1).first);
             optBox.get(2).setText(questions.get(2).first);
