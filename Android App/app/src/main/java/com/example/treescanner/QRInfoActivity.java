@@ -64,8 +64,8 @@ public class QRInfoActivity extends AppCompatActivity {
 
         origin = getIntent().getStringExtra("origin");
         String qrd = getIntent().getStringExtra("qrdata");
-        String qrd_sliced = qrd.substring(qrd.length()-2, qrd.length());
-        Integer id = Integer.valueOf(qrd_sliced);
+        Log.d("qrd", qrd);
+        Integer id = Integer.valueOf(qrd);
         ImageView backbtn = findViewById(R.id.backbutton);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +104,7 @@ public class QRInfoActivity extends AppCompatActivity {
 
         if (!res.toString().equals(" ")) {
             Toast.makeText(QRInfoActivity.this, "Entry exists", Toast.LENGTH_SHORT).show();
+            String idd = res.getString(0);
             name = res.getString(1);
             title = res.getString(2);
             kingdom = res.getString(3);
@@ -150,9 +151,9 @@ public class QRInfoActivity extends AppCompatActivity {
             detailsCol.setText(details);
 
 
-            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-1.png").into(treeimg1);
-            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-2.png").into(treeimg2);
-            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+qrd+"-3.png").into(treeimg3);
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+idd+"-1.png").into(treeimg1);
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+idd+"-2.png").into(treeimg2);
+            Glide.with(QRInfoActivity.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+idd+"-3.png").into(treeimg3);
 
 
         } else {

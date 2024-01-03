@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -38,10 +39,9 @@ public class TreeMenu extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
         Cursor data = db.get_data();
         int c = 1;
-        //TODO TMRND TREE showing up twice(37,38)
-        //TODO update entries into tree menu not working from db
+
         while(data.moveToNext()){
-            names.add(String.valueOf(c)+". "+data.getString(1));
+            names.add(String.valueOf(c)+" . "+data.getString(1));
             qrid.add(data.getString(0));
             c++;
         }
@@ -51,8 +51,11 @@ public class TreeMenu extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(TreeMenu.this, QRInfoActivity.class);
-                String e = qrid.get(i);
-                intent.putExtra("qrdata", e);
+                TextView aview = (TextView) view;
+                String e = (String) aview.getText();
+                String qrid = String.valueOf(Integer.parseInt(e.substring(0,2))-1);
+                Log.d("search", qrid);
+                intent.putExtra("qrdata", qrid);
                 intent.putExtra("origin", "menu");
                 startActivity(intent);
             }
@@ -79,7 +82,6 @@ public class TreeMenu extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
                 return false;
             }
 
@@ -87,6 +89,12 @@ public class TreeMenu extends AppCompatActivity {
             public boolean onQueryTextChange(String s) {
                 arrayAdapter.getFilter().filter(s);
                 return false;
+            }
+        });
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("search2", String.valueOf(view));
             }
         });
         super.onCreateOptionsMenu(menu);

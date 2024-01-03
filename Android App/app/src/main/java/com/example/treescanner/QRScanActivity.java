@@ -85,7 +85,8 @@ public class QRScanActivity extends AppCompatActivity {
                         String[] qrdata = data.split("\\[", 2);
                         String code = qrdata[qrdata.length-1];
                         Toast.makeText(QRScanActivity.this, code, Toast.LENGTH_SHORT).show();
-                        intent.putExtra("qrdata", code.substring(0, code.length()-1));
+                        String tosend = code.substring(0, code.length()-1);
+                        intent.putExtra("qrdata", tosend.substring(tosend.length()-2));
                         intent.putExtra("origin", "qrscan");
 
                         startActivity(intent);

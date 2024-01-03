@@ -140,7 +140,7 @@ public class ActivityQuizResponseImage extends AppCompatActivity {
         questionBox.setText("Guess which tree this is");
         Collections.shuffle(optBox);
         Random rand = new Random();
-        Glide.with(ActivityQuizResponseImage.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ rand.nextInt(4) +".png").into(imageBox);
+        Glide.with(ActivityQuizResponseImage.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ (1+(int)(Math.random()*3)) +".png").into(imageBox);
         optBox.get(0).setText(questions.get(0).first);
         optBox.get(1).setText(questions.get(1).first);
         optBox.get(2).setText(questions.get(2).first);

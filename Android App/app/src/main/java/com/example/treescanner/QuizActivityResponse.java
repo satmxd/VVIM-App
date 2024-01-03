@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,6 +36,9 @@ public class QuizActivityResponse extends AppCompatActivity {
 
     TextView answer;
     String qintent;
+
+    LinearLayout mainlyt;
+    ImageView imgbox;
     static List<TextView> optBox_Numbered;
 
 
@@ -49,10 +53,23 @@ public class QuizActivityResponse extends AppCompatActivity {
         optBox.add(1, findViewById(R.id.option2));
         optBox.add(2, findViewById(R.id.option3));
         optBox.add(3, findViewById(R.id.option4));
+
+
+
+
         ImageView backbtn = findViewById(R.id.backbutton);
         optBox_Numbered = new ArrayList<>(optBox);
         res = db.get_data();
         qintent = getIntent().getStringExtra("qintent");
+        if (qintent.equals("image")){
+            mainlyt = findViewById(R.id.quizlinearlayout);
+            imgbox = new ImageView(this);
+            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(700,700);
+            layoutParams.gravity = Gravity.CENTER;
+            imgbox.setLayoutParams(layoutParams);
+            imgbox.setPadding(20, 20, 20, 5);
+            mainlyt.addView(imgbox, 1);
+        }
         this.update(qintent);
         Toast.makeText(this, qintent, Toast.LENGTH_SHORT).show();
 
@@ -257,18 +274,14 @@ public class QuizActivityResponse extends AppCompatActivity {
             Collections.shuffle(questions);
             questionBox.setText("Can you guess the name of this tree?");
 
-            LinearLayout mainlyt = findViewById(R.id.quizlinearlayout);
-            ImageView imgbox = new ImageView(this);
-            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(750,750 );
-            layoutParams.gravity = Gravity.CENTER;
-            imgbox.setLayoutParams(layoutParams);
-            imgbox.setPadding(20, 20, 20, 10);
 
-            mainlyt.addView(imgbox, 1);
+
 
             Collections.shuffle(optBox);
             Random rand = new Random();
-            Glide.with(QuizActivityResponse.this).load("https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ rand.nextInt(4) +".png").into(imgbox);
+            String url = "https://raw.githubusercontent.com/satmxd/VVIM-App/main/data/picdb/"+questions.get(0).second+"-"+ (rand.nextInt(3)+1) +".png";
+            Glide.with(QuizActivityResponse.this).load(url).into(imgbox);
+            Log.d("url", url);
             optBox.get(0).setText(questions.get(0).first);
             optBox.get(1).setText(questions.get(1).first);
             optBox.get(2).setText(questions.get(2).first);
